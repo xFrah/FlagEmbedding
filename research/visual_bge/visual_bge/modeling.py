@@ -114,7 +114,7 @@ class Visualized_BGE(nn.Module):
     def encode(self, image=None, text=None):
         # used for simple inference
         if image is not None:
-            image = self.preprocess_val(Image.open(image)).unsqueeze(0)
+            image = self.preprocess_val(Image.open(image) if isinstance(image, str) else image).unsqueeze(0)
 
             if text is not None:
                 text = self.tokenizer(text, return_tensors="pt", padding=True)
